@@ -3397,24 +3397,73 @@ const movieList = {
 };
 // const cardContainer = document.getElementsByClassName("container");
 const cardTitleContainer = document.querySelector(".card-title");
-const cardContainer = document.getElementById("card-container");
-const titlelist = [];
-const imglist = [];
-// const cardCount = titlelist.length;
 
-//titlelist에 original_title 모아서 배열 생성하기 - 왜 배열 값이 기존값+추가값이 될까?
+// const titlelist = [];
+// const imglist = [];
+// const cardCount = titlelist.length;
+//titlelist에 original_title 모아서 배열 생성하기 - 왜 배열 값이 기존값+추가값이 될까?(중복됨)
+// for (i = 0; i < movieList.results.length; i++) {
+//     // console.log(movieList.results[i].original_title);
+//     titlelist.push(movieList.results[i].original_title);
+//     // console.log(titlelist);
+// }
+// //imglist에 backdprop_path 모아서 배열 생성하기 - 왜 배열 값이 기존값+추가값이 될까?(중복됨)
+// for(i = 0; i< movieList.results.length; i++){
+//     // console.log(movieList.results[i].backdrop_path);
+//     imglist.push(movieList.results[i].backdrop_path);
+//     // console.log(imglist);
+// }
+
+//results 값은 총 200개인 것 확인
+// console.log(movieList.results.length);
+
+//배열 값 중복 안되게 바꿔보기 - 중복은 안되는데 200개가 아닌 197개가 나오는 이유는?
+const set = new Set();
 for (i = 0; i < movieList.results.length; i++) {
     // console.log(movieList.results[i].original_title);
-    titlelist.push(movieList.results[i].original_title);
+    set.add(movieList.results[i].original_title);
     // console.log(titlelist);
-}
 
-//imglist에 backdprop_path 모아서 배열 생성하기 - 왜 배열 값이 기존값+추가값이 될까?
-for(i = 0; i< movieList.results.length; i++){
-    // console.log(movieList.results[i].backdrop_path);
-    imglist.push(movieList.results[i].backdrop_path);
-    console.log(imglist);
 }
+const titlelist = Array.from(set);
+// console.log(titlelist);
+
+//배열 값 중복 안되게 바꿔보기 - 중복은 안되는데 200개가 아닌 197개가 나오는 이유는?
+const set2 = new Set();
+for (i = 0; i < movieList.results.length; i++) {
+    // console.log(movieList.results[i].backdrop_path);
+    set2.add(movieList.results[i].backdrop_path);
+    // console.log(titlelist);
+
+}
+const imglist = Array.from(set2);
+// console.log(imglist);
+
+//무비 갯수 만큼 카드 생성하기 - 안됨 ㅠㅠ
+function createCardsFromArray(titlelist) {
+    const cardContainer = document.getElementById("card-container"); //카드 담을 컨테이너
+
+    titlelist.forEach(item => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+
+        const cardContent =document.createElement('p');
+        cardContent.textContent = item;
+
+        card.appendChild(cardContent);
+        cardContainer.appendChild(card); //오류남 - 이유가 뭘까.....
+    });
+
+    // const cardContent = `
+    // <h5>${titlelist}</h5>
+    // `;
+    // card.innerHTML = cardContent; //오류남 - 이유가 뭘까?
+
+    // container.appendChild(card);
+}
+createCardsFromArray(titlelist);
+
+
 
 
 
@@ -3429,11 +3478,6 @@ for(i = 0; i< movieList.results.length; i++){
 //         `;
 //     cardContainer.innerHTML += cardHTML;
 // });
-
-
-
-
-
 
 
 
