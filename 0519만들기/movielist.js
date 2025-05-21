@@ -3396,7 +3396,7 @@ const movieList = {
     total_results: 1008061,
 };
 // const cardContainer = document.getElementsByClassName("container");
-const cardTitleContainer = document.querySelector(".card-title");
+// const cardTitleContainer = document.querySelector(".card-title");
 
 // const titlelist = [];
 // const imglist = [];
@@ -3417,7 +3417,7 @@ const cardTitleContainer = document.querySelector(".card-title");
 //results 값은 총 200개인 것 확인
 // console.log(movieList.results.length);
 
-//배열 값 중복 안되게 바꿔보기 - 중복은 안되는데 200개가 아닌 197개가 나오는 이유는?
+//영화 타이틀 배열 값 중복 안되게 바꿔보기 - 중복은 안되는데 200개가 아닌 197개가 나오는 이유는?
 const set = new Set();
 for (i = 0; i < movieList.results.length; i++) {
     // console.log(movieList.results[i].original_title);
@@ -3428,7 +3428,7 @@ for (i = 0; i < movieList.results.length; i++) {
 const titlelist = Array.from(set);
 // console.log(titlelist);
 
-//배열 값 중복 안되게 바꿔보기 - 중복은 안되는데 200개가 아닌 197개가 나오는 이유는?
+//영화 이미지 배열 값 중복 안되게 바꿔보기 - 중복은 안되는데 200개가 아닌 197개가 나오는 이유는?
 const set2 = new Set();
 for (i = 0; i < movieList.results.length; i++) {
     // console.log(movieList.results[i].backdrop_path);
@@ -3439,45 +3439,43 @@ for (i = 0; i < movieList.results.length; i++) {
 const imglist = Array.from(set2);
 // console.log(imglist);
 
-//무비 갯수 만큼 카드 생성하기 - 안됨 ㅠㅠ
-function createCardsFromArray(titlelist) {
-    const cardContainer = document.getElementById("card-container"); //카드 담을 컨테이너
+//무비 갯수 만큼 카드 생성하기1 - 안됨 ㅠㅠ
+// function createCardsFromArray(titlelist) {
+//     const cardContainer = document.getElementById("cards-container"); //카드 담을 컨테이너
 
-    titlelist.forEach(item => {
-        const card = document.createElement('div');
-        card.classList.add('card');
+// titlelist.forEach(item => {
+//     const card = document.createElement('div');
+//     card.classList.add('card');
 
-        const cardContent =document.createElement('p');
-        cardContent.textContent = item;
+//     const cardContent =document.createElement('p');
+//     cardContent.textContent = item;
 
-        card.appendChild(cardContent);
-        cardContainer.appendChild(card); //오류남 - 이유가 뭘까.....
-    });
-
-    // const cardContent = `
-    // <h5>${titlelist}</h5>
-    // `;
-    // card.innerHTML = cardContent; //오류남 - 이유가 뭘까?
-
-    // container.appendChild(card);
-}
-createCardsFromArray(titlelist);
-
-
-
-
-
-// movieList.forEach(card => {
-//     const cardHTML = `
-//         <div class="card">
-//           <div class="card-body">
-//             <h3 class="card-title">${card.titlelist}</h3>
-//             <p class="card-text">카드 내용</p>
-//           </div>
-//         </div>
-//         `;
-//     cardContainer.innerHTML += cardHTML;
+//     card.appendChild(cardContent);
+//     cardContainer.appendChild(card); //오류남 - 이유가 뭘까.....
 // });
+
+
+//무비 갯수 만큼 카드 생성하기2 - 됨
+const cardContainer = document.getElementById("cards-container"); //카드 담을 컨테이너
+
+titlelist.forEach(card => {
+    const cardHTML = `
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <img class="card-img-top" src="..." alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${card}</h5>
+          <p class="card-text"></p>
+          <a href="#" class="btn btn-primary">더 보기</a>
+        </div>
+      </div>
+    </div>
+    `;
+    cardContainer.innerHTML += cardHTML; 
+})
+// createCards(titlelist, cardContainer);
+
+
 
 
 
