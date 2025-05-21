@@ -3431,10 +3431,8 @@ const titlelist = Array.from(set);
 //영화 이미지 배열 값 중복 안되게 바꿔보기 - 중복은 안되는데 200개가 아닌 197개가 나오는 이유는?
 const set2 = new Set();
 for (i = 0; i < movieList.results.length; i++) {
-    // console.log(movieList.results[i].backdrop_path);
-    set2.add(movieList.results[i].backdrop_path);
-    // console.log(titlelist);
-
+    // console.log(movieList.results[i].poster_path);
+    set2.add(movieList.results[i].poster_path);
 }
 const imglist = Array.from(set2);
 // console.log(imglist);
@@ -3455,7 +3453,7 @@ const imglist = Array.from(set2);
 // });
 
 
-//무비 갯수 만큼 카드 생성하기2 - 됨
+//무비 갯수 만큼 카드 생성하기2 - 됨(근데 영화 타이틀만 됨)
 const cardContainer = document.getElementById("cards-container"); //카드 담을 컨테이너
 
 titlelist.forEach(card => {
@@ -3475,41 +3473,22 @@ titlelist.forEach(card => {
 })
 // createCards(titlelist, cardContainer);
 
+//무비 갯수 만큼 카드 생성하기3 - 이미지 넣어보기
 
+// const cardContainer = document.getElementById("cards-container"); //카드 담을 컨테이너
 
-
-
-// const movieListElement = document.getElementById("movieList");
-// movieListElement.innerHTML = "";
-
-// for(let a =0; a < movieList.results.length; a++){
-//     const listItem = document.createElement("li");
-//     listItem.classList.add("list-group-item");
-//     movieListElement.appendChild(listItem);
-// }
-// const cardContainer = document.getElementById('card-container');
-
-// function creatCard(){
-//     const movieListElement = document.createElement('div');
-//     cardDiv.classList.add('card');
-
-//     const cardDiv = document.createElement('div');
-//     cardDiv.classList.add('card-body');
-// }
-// const cardContainer = document.querySelector(".row");
-
-// for (let a = 0; a < movieList.results.length; a++) {
-//     console.log(movieList[a].original_title);
-
-//     movieList.forEach(result => {
-//         const cardHTML = `${movieList.results(a)}`;
-
-//         const cardDiv = document.createElement("div");
-//         cardDiv.innerHTML = cardHTML;
-//         cardContainer.appendChild(cardDiv);
-//     });
-// }
-// movieList.results((data, a) => {
-//     console.log(data, a);
-// });
-
+// imglist.forEach(card => {
+//     const cardHTML = `
+//     <div class="col-md-4">
+//       <div class="card mb-4 shadow-sm">
+//         <img class="card-img-top" src="getImageUrl(${card})" alt="...">
+//         <div class="card-body">
+//           <h5 class="card-title"></h5>
+//           <p class="card-text"></p>
+//           <a href="#" class="btn btn-primary">더 보기</a>
+//         </div>
+//       </div>
+//     </div>
+//     `;
+//     cardContainer.innerHTML += cardHTML; 
+// })
