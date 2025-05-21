@@ -3398,32 +3398,37 @@ const movieList = {
 // const cardContainer = document.getElementsByClassName("container");
 const cardTitleContainer = document.querySelector(".card-title");
 const cardContainer = document.getElementById("card-container");
+const titlelist = [];
+const imglist = [];
+// const cardCount = titlelist.length;
 
+//titlelist에 original_title 모아서 배열 생성하기 - 왜 배열 값이 기존값+추가값이 될까?
 for (i = 0; i < movieList.results.length; i++) {
     // console.log(movieList.results[i].original_title);
-    const titlelist = [movieList.results[i].original_title]
-    console.log(titlelist);
+    titlelist.push(movieList.results[i].original_title);
+    // console.log(titlelist);
+}
 
-    titlelist.forEach(title => {
-        cardTitleContainer.textContent = title;
-    });
-
-    titlelist.forEach(title =>{
-        const cardDiv = document.createElement("div");
-        cardDiv.classList.add("col-md-4");
-        cardDiv.innerHTML = `
-        <div class="card">
-         <div class="card-body">
-           <h3 class="card-title">${title}</h3>
-           <p class="card-text">카드 내용</p>
-         </div>
-       </div>
-        `;
-        cardContainer.appendChild(cardDiv); 
-    });
+//imglist에 backdprop_path 모아서 배열 생성하기 - 왜 배열 값이 기존값+추가값이 될까?
+for(i = 0; i< movieList.results.length; i++){
+    // console.log(movieList.results[i].backdrop_path);
+    imglist.push(movieList.results[i].backdrop_path);
+    console.log(imglist);
 }
 
 
+
+// movieList.forEach(card => {
+//     const cardHTML = `
+//         <div class="card">
+//           <div class="card-body">
+//             <h3 class="card-title">${card.titlelist}</h3>
+//             <p class="card-text">카드 내용</p>
+//           </div>
+//         </div>
+//         `;
+//     cardContainer.innerHTML += cardHTML;
+// });
 
 
 
